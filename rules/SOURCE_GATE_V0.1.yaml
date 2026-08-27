@@ -1,0 +1,41 @@
+version: "0.1.0"
+gate_id: G1
+name: Source Gate
+status: frozen
+source_tiers:
+  tier_1:
+    examples: [company_ir, regulatory_filing, exchange, government, central_bank, official_statistics]
+    material_investment_fact_allowed: true
+  tier_2:
+    examples: [major_wire, major_financial_press]
+    material_investment_fact_allowed: true
+    condition: attributable_and_verifiable
+  tier_3:
+    examples: [general_media, analyst_report]
+    material_investment_fact_allowed: conditional
+    condition: corroboration_required_for_critical_claims
+  tier_4:
+    examples: [blog, social_media, forum, anonymous_community]
+    material_investment_fact_allowed: false
+required_checks:
+  - id: material_claims_have_sources
+    blocking: true
+  - id: source_supports_claim
+    blocking: true
+  - id: critical_claim_source_tier_acceptable
+    blocking: true
+  - id: no_fabricated_or_misattributed_source
+    blocking: true
+decisions:
+  pass: all_required_checks_pass
+  fail:
+    - unsourced_material_fact
+    - unsupported_citation
+    - tier_4_only_for_material_investment_fact
+    - fabricated_source
+    - misattributed_source
+  unknown:
+    - source_inaccessible
+    - provenance_unresolved
+    - source_tier_unresolved
+unknown_is_pass: false
