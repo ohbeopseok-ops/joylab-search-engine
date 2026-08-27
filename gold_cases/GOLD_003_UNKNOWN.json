@@ -1,0 +1,53 @@
+{
+  "gold_case_id": "GOLD_003",
+  "title": "Intentional UNKNOWN fixture for Trust Layer regression",
+  "entity": {"name": "Example Power Equipment", "ticker": "TEST003"},
+  "frozen_at": "2026-08-27T13:31:00+09:00",
+  "purpose": "Regression fixture proving that missing mandatory evidence remains UNKNOWN and never becomes PASS.",
+  "metadata": {
+    "source_date": null,
+    "observed_at": "2026-08-27T13:31:00+09:00",
+    "data_period": null,
+    "updated_at": "2026-08-27T13:31:00+09:00"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "tier": null,
+      "publisher": "Source named in excerpt but not verifiable",
+      "title": "Unresolved source",
+      "published_at": null,
+      "url": null
+    }
+  ],
+  "statements": [
+    {
+      "id": "C1",
+      "type": "FACT",
+      "text": "Example Power Equipment reported a material order increase in the latest period.",
+      "source_ids": ["S1"],
+      "reported_or_calculated": "REPORTED"
+    },
+    {
+      "id": "C2",
+      "type": "INTERPRETATION",
+      "text": "If verified, the order trend could support a stronger earnings outlook, but the underlying evidence is incomplete.",
+      "source_ids": ["S1"],
+      "reported_or_calculated": "ANALYST_INTERPRETATION"
+    }
+  ],
+  "investment_language_check": {
+    "guaranteed_return_language": false,
+    "mandatory_buy_language": false,
+    "absolute_price_direction_claim": false,
+    "risk_or_uncertainty_present": true
+  },
+  "expected_gate_results": {
+    "G1_SOURCE": "UNKNOWN",
+    "G2_FRESHNESS": "UNKNOWN",
+    "G3_FACT_SEPARATION": "PASS",
+    "G4_CITATION": "UNKNOWN",
+    "G5_INVESTMENT_CONTENT": "PASS"
+  },
+  "expected_overall_result": "UNKNOWN"
+}
