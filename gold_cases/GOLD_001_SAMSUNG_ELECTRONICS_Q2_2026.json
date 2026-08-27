@@ -1,0 +1,105 @@
+{
+  "gold_case_id": "GOLD_001",
+  "title": "Samsung Electronics 2Q 2026 investment-analysis citation audit",
+  "entity": {
+    "name": "Samsung Electronics",
+    "ticker": "005930"
+  },
+  "frozen_at": "2026-08-27T13:00:00+09:00",
+  "purpose": "Regression fixture for JoyLab Search Engine V0.1 gates. This is an audit fixture, not an investment recommendation.",
+  "metadata": {
+    "source_date": "2026-07-30",
+    "observed_at": "2026-08-27T13:00:00+09:00",
+    "data_period": "2026-04-01/2026-06-30",
+    "updated_at": "2026-08-27T13:00:00+09:00"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "tier": 1,
+      "publisher": "Samsung Electronics Global Newsroom",
+      "title": "Samsung Electronics Announces Second Quarter 2026 Results",
+      "published_at": "2026-07-30",
+      "url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results"
+    },
+    {
+      "id": "S2",
+      "tier": 1,
+      "publisher": "Samsung Electronics Investor Relations",
+      "title": "Samsung Electronics' 2026 2Q Earnings Release",
+      "published_at": "2026-07-30",
+      "url": "https://www.samsung.com/global/ir/reports-disclosures/public-disclosure-view.84745/"
+    }
+  ],
+  "statements": [
+    {
+      "id": "C1",
+      "type": "FACT",
+      "text": "Samsung Electronics reported consolidated revenue of KRW 171.5 trillion for the second quarter ended June 30, 2026.",
+      "source_ids": ["S1"],
+      "reported_or_calculated": "REPORTED"
+    },
+    {
+      "id": "C2",
+      "type": "FACT",
+      "text": "Samsung Electronics reported consolidated operating profit of KRW 89.5 trillion for the second quarter of 2026.",
+      "source_ids": ["S1"],
+      "reported_or_calculated": "REPORTED"
+    },
+    {
+      "id": "C3",
+      "type": "FACT",
+      "text": "Samsung Electronics stated that its Device Solutions division recorded KRW 127.5 trillion in revenue and KRW 89.2 trillion in operating profit in the second quarter of 2026.",
+      "source_ids": ["S1"],
+      "reported_or_calculated": "REPORTED"
+    },
+    {
+      "id": "C4",
+      "type": "INTERPRETATION",
+      "text": "The concentration of second-quarter operating profit in Device Solutions indicates that semiconductor conditions were the dominant earnings driver in this frozen analysis period.",
+      "source_ids": ["S1"],
+      "reported_or_calculated": "ANALYST_INTERPRETATION"
+    },
+    {
+      "id": "C5",
+      "type": "FORECAST",
+      "text": "Future earnings could remain sensitive to memory pricing, AI-server demand, product mix, and execution; this is a scenario statement rather than a reported company fact.",
+      "source_ids": [],
+      "reported_or_calculated": "FORWARD_LOOKING_ANALYSIS"
+    }
+  ],
+  "investment_language_check": {
+    "guaranteed_return_language": false,
+    "mandatory_buy_language": false,
+    "absolute_price_direction_claim": false,
+    "risk_or_uncertainty_present": true
+  },
+  "gate_results": {
+    "G1_SOURCE": {
+      "status": "PASS",
+      "reason": "All material historical numeric facts are supported by Tier 1 Samsung sources."
+    },
+    "G2_FRESHNESS": {
+      "status": "PASS",
+      "reason": "Source date, observation time, data period, and update time are explicit; no current stock-price claim is made."
+    },
+    "G3_FACT_SEPARATION": {
+      "status": "PASS",
+      "reason": "FACT, INTERPRETATION, and FORECAST statements are explicitly separated, and reported versus analytical statements are identified."
+    },
+    "G4_CITATION": {
+      "status": "PASS",
+      "reason": "Material numeric claims identify Samsung Electronics, the 2Q 2026 period, the number, and a traceable Tier 1 source."
+    },
+    "G5_INVESTMENT_CONTENT": {
+      "status": "PASS",
+      "reason": "No guaranteed-return, mandatory-buy, or certainty language is present; uncertainty is explicit."
+    }
+  },
+  "overall_result": "PASS",
+  "release_effect": "GOLD_CASE_ACCEPTED_FOR_V0.1_REGRESSION",
+  "notes": [
+    "The fixture freezes 2Q 2026 reported financial facts and does not claim to represent a live market-price view on 2026-08-27.",
+    "A future parser/test runner must independently recompute gate outcomes rather than trusting the embedded expected results."
+  ]
+}
