@@ -1,0 +1,53 @@
+{
+  "gold_case_id": "GOLD_002",
+  "title": "Intentional failure fixture for Trust Layer regression",
+  "entity": {"name": "Example Semiconductor", "ticker": "TEST002"},
+  "frozen_at": "2026-08-27T13:30:00+09:00",
+  "purpose": "Negative regression fixture. It intentionally violates source, freshness, citation, fact-separation, and investment-language rules.",
+  "metadata": {
+    "source_date": "2025-01-01",
+    "observed_at": "2026-08-27T13:30:00+09:00",
+    "data_period": "2024-10-01/2024-12-31",
+    "updated_at": "2026-08-27T13:30:00+09:00"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "tier": 4,
+      "publisher": "Anonymous Community Post",
+      "title": "Unverified rumor",
+      "published_at": "2025-01-01",
+      "url": "https://example.com/community-rumor"
+    }
+  ],
+  "statements": [
+    {
+      "id": "C1",
+      "type": "FACT",
+      "text": "Example Semiconductor will definitely double its operating profit next quarter.",
+      "source_ids": ["S1"],
+      "reported_or_calculated": "REPORTED"
+    },
+    {
+      "id": "C2",
+      "type": "FACT",
+      "text": "The stock is currently worth 100,000 won and will certainly rise.",
+      "source_ids": [],
+      "reported_or_calculated": "REPORTED"
+    }
+  ],
+  "investment_language_check": {
+    "guaranteed_return_language": true,
+    "mandatory_buy_language": true,
+    "absolute_price_direction_claim": true,
+    "risk_or_uncertainty_present": false
+  },
+  "expected_gate_results": {
+    "G1_SOURCE": "FAIL",
+    "G2_FRESHNESS": "FAIL",
+    "G3_FACT_SEPARATION": "FAIL",
+    "G4_CITATION": "FAIL",
+    "G5_INVESTMENT_CONTENT": "FAIL"
+  },
+  "expected_overall_result": "FAIL"
+}
