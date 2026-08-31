@@ -1,0 +1,30 @@
+version: "0.1.0"
+gate_id: G2
+name: Freshness Gate
+status: frozen
+required_metadata:
+  - source_date
+  - observed_at
+  - data_period
+  - updated_at
+rules:
+  - id: reporting_period_explicit
+    blocking: true
+  - id: publication_or_observation_time_explicit
+    blocking: true
+  - id: stale_data_not_presented_as_current
+    blocking: true
+  - id: latest_current_language_requires_current_timestamp
+    blocking: true
+decisions:
+  pass: all_required_checks_pass
+  fail:
+    - stale_value_presented_as_current
+    - materially_wrong_reporting_period
+    - current_market_language_without_current_observation
+  unknown:
+    - required_date_missing
+    - staleness_cannot_be_determined
+unknown_is_pass: false
+notes:
+  - "Freshness threshold is context-dependent in V0.1; the audit checks temporal honesty before introducing hard age thresholds in a later version."

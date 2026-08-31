@@ -1,0 +1,29 @@
+version: "0.1.0"
+gate_id: G4
+name: Citation Gate
+status: frozen
+preferred_fact_unit:
+  - entity
+  - fact
+  - number
+  - date_or_period
+  - source
+required_checks:
+  - id: material_numbers_traceable
+    blocking: true
+  - id: citation_supports_claim
+    blocking: true
+  - id: entity_and_period_unambiguous
+    blocking: true
+  - id: paragraph_self_contained_for_core_claims
+    blocking: false
+decisions:
+  pass: all_blocking_checks_pass
+  fail:
+    - unsourced_material_number
+    - contradicting_evidence
+    - materially_ambiguous_entity_or_period
+  unknown:
+    - exact_support_unconfirmed
+    - citation_location_unresolved
+unknown_is_pass: false

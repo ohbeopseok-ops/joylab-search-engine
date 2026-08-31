@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joylab.example/schemas/gold_case.schema.json",
+  "title": "JoyLab Search Engine Gold Case V0.1",
+  "type": "object",
+  "required": ["gold_case_id", "title", "entity", "frozen_at", "purpose", "metadata", "sources", "statements", "investment_language_check"],
+  "properties": {
+    "gold_case_id": {"type": "string", "pattern": "^GOLD_[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "entity": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "ticker": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "frozen_at": {"type": "string", "format": "date-time"},
+    "purpose": {"type": "string", "minLength": 1},
+    "metadata": {
+      "type": "object",
+      "required": ["source_date", "observed_at", "data_period", "updated_at"],
+      "properties": {
+        "source_date": {"type": ["string", "null"]},
+        "observed_at": {"type": ["string", "null"]},
+        "data_period": {"type": ["string", "null"]},
+        "updated_at": {"type": ["string", "null"]}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "tier", "publisher", "title", "published_at", "url"],
+        "properties": {
+          "id": {"type": "string"},
+          "tier": {"type": ["integer", "null"], "minimum": 1, "maximum": 4},
+          "publisher": {"type": "string"},
+          "title": {"type": "string"},
+          "published_at": {"type": ["string", "null"]},
+          "url": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "statements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "text", "source_ids", "reported_or_calculated"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["FACT", "INTERPRETATION", "FORECAST", "OPINION"]},
+          "text": {"type": "string", "minLength": 1},
+          "source_ids": {"type": "array", "items": {"type": "string"}},
+          "reported_or_calculated": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "investment_language_check": {
+      "type": "object",
+      "required": ["guaranteed_return_language", "mandatory_buy_language", "absolute_price_direction_claim", "risk_or_uncertainty_present"],
+      "properties": {
+        "guaranteed_return_language": {"type": "boolean"},
+        "mandatory_buy_language": {"type": "boolean"},
+        "absolute_price_direction_claim": {"type": "boolean"},
+        "risk_or_uncertainty_present": {"type": "boolean"}
+      }
+    },
+    "expected_gate_results": {"type": "object"},
+    "expected_overall_result": {"enum": ["PASS", "FAIL", "UNKNOWN"]},
+    "gate_results": {"type": "object"},
+    "overall_result": {"enum": ["PASS", "FAIL", "UNKNOWN"]}
+  },
+  "additionalProperties": true
+}
